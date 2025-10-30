@@ -1,0 +1,42 @@
+[project]
+name = "interview-lab"
+version = "0.1.0"
+description = "Personal interview preparation lab for Python fundamentals and algorithms."
+requires-python = ">=3.11"
+readme = "README.md"
+
+# Optional dependencies (install via uv add or pip install)
+dependencies = ["pytest"]
+
+[tool.pytest.ini_options]
+# Makes pytest.ini unnecessary for simple setups (but we already have one)
+pythonpath = ["."]
+testpaths = ["tests"]
+addopts = "-s -vv"
+
+[tool.ruff]
+# Linting and formatting
+line-length = 100
+target-version = "py311"
+extend-select = ["I"]                                             # import sorting
+fix = true
+exclude = ["react-play", "javascript-playground", "node_modules"]
+
+[tool.ruff.lint.per-file-ignores]
+# Ignore unused imports in __init__.py files
+"__init__.py" = ["F401"]
+
+[tool.mypy]
+# Type-checking configuration
+python_version = "3.11"
+warn_unused_configs = true
+ignore_missing_imports = true
+disallow_untyped_defs = true
+check_untyped_defs = true
+warn_return_any = true
+warn_unused_ignores = true
+exclude = "node_modules|react-play|javascript-playground"
+
+[tool.uv]
+# uv sync will automatically install these
+dev-dependencies = ["ruff", "mypy", "pytest"]

@@ -1,0 +1,13 @@
+{
+  "name": "javascript-playground",
+  "version": "1.0.0",
+  "description": "JavaScript playground for interview fundamentals",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "start": "node index.js",
+    "closures": "node topics/closures.js",
+    "event-loop": "node topics/event-loop.js",
+    "arrays": "node topics/array-methods.js"
+  }
+}
