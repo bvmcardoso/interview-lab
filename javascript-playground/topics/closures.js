@@ -1,18 +1,51 @@
-// ---- Closures Playground ----
+// O que é scope ? É onde a variável pode ser vista.
 
-function makeCounter(start = 0) {
-  let count = start;
-  return function () {
-    count += 1;
-    console.log('count =', count);
+function createCounter() {
+  let counter = 0;
+
+  function incrementCounter() {
+    counter++;
+    console.log(counter);
+  }
+
+  return incrementCounter;
+}
+
+const counterOne = createCounter();
+counterOne();
+counterOne();
+counterOne();
+counterOne();
+counterOne();
+counterOne();
+counterOne();
+counterOne();
+counterOne();
+counterOne();
+
+function createBankAccount() {
+  let balance = 0;
+
+  return {
+    deposit(amount) {
+      balance += amount;
+      console.log('Your deposit of ' + amount + ' has been made successfully.');
+    },
+    withdraw(amount) {
+      if (amount <= balance) {
+        balance -= amount;
+        console.log('After withdrawing ', amount, 'your new balance is ', balance);
+      } else {
+        console.log('Insufficient funds');
+      }
+    },
+    getBalance() {
+      console.log('Your balance is ', balance);
+    },
   };
 }
 
-const counter1 = makeCounter();
-counter1();
-counter1();
-counter1();
-
-const counter2 = makeCounter(10);
-counter2();
-counter2();
+const bankAccount = createBankAccount();
+bankAccount.deposit(100);
+bankAccount.withdraw(70);
+bankAccount.getBalance();
